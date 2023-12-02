@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "2_cube_conundrum": {
+      "commandName": "Project",
+      "workingDirectory": "..\\2_cube_conundrum"
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "profiles": {
     "1_trebuchet": {
       "commandName": "Project",
-      "workingDirectory": "E:\\Repos\\AdventOfCode2023\\1_trebuchet"
+      "workingDirectory": "..\\1_trebuchet"
     }
   }
 }
