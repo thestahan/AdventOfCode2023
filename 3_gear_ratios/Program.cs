@@ -1,4 +1,5 @@
 ﻿string path = Path.Combine(Environment.CurrentDirectory, "input.txt");
+
 var inputData = File.ReadAllLines(path);
 
 int maxRows = inputData.Length - 1;
@@ -36,7 +37,6 @@ for (int i = 0; i < inputData.Length; i++)
             if (isAdjacentToSymbol)
             {
                 enginePartNumbersSum += long.Parse(string.Join("", newNumber));
-                Console.Write($" | {long.Parse(string.Join("", newNumber))} | ");
                 myNums.Add(long.Parse(string.Join("", newNumber)));
             }
 
@@ -52,19 +52,41 @@ for (int i = 0; i < inputData.Length; i++)
         if (isAdjacentToSymbol)
         {
             enginePartNumbersSum += int.Parse(string.Join("", newNumber));
-
-            Console.Write($" | {int.Parse(string.Join("", newNumber))} | ");
             myNums.Add(long.Parse(string.Join("", newNumber)));
         }
 
         isCreatingNumber = false;
         newNumber = [];
     }
-
-    Console.WriteLine();
 }
 
 Console.WriteLine($"Part one: {enginePartNumbersSum}");
+
+ulong gearRatios = 0;
+
+for (int i = 0; i < inputData.Length; i++)
+{
+    var line = inputData[i];
+
+    for (int j = 0; j < line.Length; j++)
+    {
+        if (inputData[i][j] == '*')
+        {
+            try
+            {
+                var nums = GetNumbersAdjecentToSymbol(j, i, inputData);
+                Console.WriteLine($"Adding pair: {nums.number1}, {nums.number2}");
+                gearRatios += (ulong)(nums.number1 * nums.number2);
+                Console.WriteLine($"Current gearRatios: {gearRatios}");
+            }
+            catch (Exception)
+            {
+            }
+        }
+    }
+}
+
+Console.WriteLine($"Part two: {gearRatios}");
 
 bool IsNumberAdjacentToSymbol(int startColumn, int endColumn, int row, int maxRows, int maxColumns, string[] inputData, List<char> symbols)
 {
@@ -135,4 +157,132 @@ bool IsNumberAdjacentToSymbol(int startColumn, int endColumn, int row, int maxRo
     }
 
     return false;
+}
+
+(ulong number1, ulong number2) GetNumbersAdjecentToSymbol(int column, int row, string[] inputData)
+{
+    int maxCol = inputData.First().Length;
+    int maxRow = inputData.Length;
+
+    var numbers = new List<ulong>();
+
+    // Top
+    if (row - 1 >= 0)
+    {
+        numbers.AddRange(GetNumbersFromRow(column, row - 1, inputData, maxCol));
+    }
+
+    // Sides
+    if (column - 1 >= 0)
+    {
+        List<char> number = [];
+
+        for (int i = column - 1; i >= 0; i--)
+        {
+            if (char.IsDigit(inputData[row][i]))
+            {
+                number.Add(inputData[row][i]);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (number.Count > 0)
+        {
+            numbers.Add(ulong.Parse(string.Join("", number)));
+        }
+    }
+    if (column + 1 <= maxCol)
+    {
+        List<char> number = [];
+
+        for (int i = column + 1; i < maxCol; i++)
+        {
+            if (char.IsDigit(inputData[row][i]))
+            {
+                number.Add(inputData[row][i]);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (number.Count > 0)
+        {
+            numbers.Add(ulong.Parse(string.Join("", number)));
+        }
+    }
+
+    // Bottom
+    if (row + 1 < maxRow)
+    {
+        numbers.AddRange(GetNumbersFromRow(column, row + 1, inputData, maxCol));
+    }
+
+    if (numbers.Count != 2)
+    {
+        throw new Exception();
+    }
+
+    return (numbers[0], numbers[1]);
+}
+
+static List<ulong> GetNumbersFromRow(int column, int row, string[] inputData, int maxCol)
+{
+    var numbers = new List<ulong>();
+    int topStartRow = row;
+    int topStartCol = column;
+
+    if (column - 1 >= 0)
+    {
+        topStartCol -= 1;
+    }
+
+    while (topStartCol > 0)
+    {
+        if (!char.IsDigit(inputData[topStartRow][topStartCol]))
+        {
+            topStartCol++;
+
+            break;
+        }
+
+        topStartCol--;
+    }
+
+    List<char> number = [];
+
+    while (char.IsDigit(inputData[topStartRow][topStartCol]))
+    {
+        number.Add(inputData[topStartRow][topStartCol]);
+        topStartCol++;
+    }
+
+    if (number.Count > 0)
+    {
+        numbers.Add(ulong.Parse(string.Join("", number)));
+    }
+
+    topStartCol += 1;
+
+    if (topStartCol < maxCol && !char.IsDigit(inputData[row][column]))
+    {
+        number = [];
+
+        while (char.IsDigit(inputData[topStartRow][topStartCol]))
+        {
+            number.Add(inputData[topStartRow][topStartCol]);
+            topStartCol++;
+        }
+
+        if (number.Count > 0)
+        {
+            numbers.Add(ulong.Parse(string.Join("", number)));
+        }
+    }
+
+    return numbers;
 }
