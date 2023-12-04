@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "4_scratchcards": {
+      "commandName": "Project",
+      "workingDirectory": "..\\4_scratchcards"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "3_gear_ratios": {
+      "commandName": "Project",
+      "workingDirectory": "..\\3_gear_ratios"
+    }
+  }
+}
