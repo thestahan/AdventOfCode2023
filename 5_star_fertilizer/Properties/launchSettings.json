@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "5_star_fertilizer": {
+      "commandName": "Project",
+      "workingDirectory": "..\\5_star_fertilizer"
+    }
+  }
+}
