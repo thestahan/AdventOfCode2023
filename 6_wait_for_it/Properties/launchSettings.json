@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "6_wait_for_it": {
+      "commandName": "Project",
+      "workingDirectory": "..\\6_wait_for_it"
+    }
+  }
+}

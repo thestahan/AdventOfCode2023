@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4_scratchcards", "4_scratch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5_star_fertilizer", "5_star_fertilizer\5_star_fertilizer.csproj", "{27FEA3AD-8BFC-41B0-A6B2-58EB3CB06EF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6_wait_for_it", "6_wait_for_it\6_wait_for_it.csproj", "{785D23FD-82AE-4216-BB6B-B049B8CCA45E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{27FEA3AD-8BFC-41B0-A6B2-58EB3CB06EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27FEA3AD-8BFC-41B0-A6B2-58EB3CB06EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27FEA3AD-8BFC-41B0-A6B2-58EB3CB06EF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785D23FD-82AE-4216-BB6B-B049B8CCA45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785D23FD-82AE-4216-BB6B-B049B8CCA45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785D23FD-82AE-4216-BB6B-B049B8CCA45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785D23FD-82AE-4216-BB6B-B049B8CCA45E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
