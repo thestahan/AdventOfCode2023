@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "7_camel_cards": {
+      "commandName": "Project",
+      "workingDirectory": "E:\\Repos\\AdventOfCode2023\\7_camel_cards"
+    }
+  }
+}
