@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "8_haunted_wasteland": {
+      "commandName": "Project",
+      "workingDirectory": "..\\8_haunted_wasteland"
+    }
+  }
+}

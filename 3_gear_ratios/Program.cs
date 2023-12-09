@@ -77,7 +77,6 @@ for (int i = 0; i < inputData.Length; i++)
                 var nums = GetNumbersAdjecentToSymbol(j, i, inputData);
                 Console.WriteLine($"Adding pair: {nums.number1}, {nums.number2}");
                 gearRatios += (ulong)(nums.number1 * nums.number2);
-                Console.WriteLine($"Current gearRatios: {gearRatios}");
             }
             catch (Exception)
             {
@@ -191,6 +190,7 @@ bool IsNumberAdjacentToSymbol(int startColumn, int endColumn, int row, int maxRo
 
         if (number.Count > 0)
         {
+            number.Reverse();
             numbers.Add(ulong.Parse(string.Join("", number)));
         }
     }
@@ -241,12 +241,17 @@ static List<ulong> GetNumbersFromRow(int column, int row, string[] inputData, in
         topStartCol -= 1;
     }
 
-    while (topStartCol > 0)
+    while (topStartCol >= 0)
     {
         if (!char.IsDigit(inputData[topStartRow][topStartCol]))
         {
             topStartCol++;
 
+            break;
+        }
+
+        if (topStartCol - 1 < 0)
+        {
             break;
         }
 
@@ -275,6 +280,12 @@ static List<ulong> GetNumbersFromRow(int column, int row, string[] inputData, in
         while (char.IsDigit(inputData[topStartRow][topStartCol]))
         {
             number.Add(inputData[topStartRow][topStartCol]);
+
+            if (topStartCol + 1 == inputData.First().Length)
+            {
+                break;
+            }
+
             topStartCol++;
         }
 
