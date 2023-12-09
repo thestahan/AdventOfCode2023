@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "9_mirage_maintenance": {
+      "commandName": "Project",
+      "workingDirectory": "..\\9_mirage_maintenance"
+    }
+  }
+}
